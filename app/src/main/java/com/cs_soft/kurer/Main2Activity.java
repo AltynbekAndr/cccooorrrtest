@@ -45,6 +45,7 @@ public class Main2Activity extends AppCompatActivity {
     String codeid = null;
     TextView kurerName = null;
     TextView adres = null;
+    TextView adres2 = null;
     TextView clientName = null;
     TextView clientTel = null;
     TextView priceAll = null;
@@ -78,59 +79,134 @@ public class Main2Activity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MYSETTINGS",MODE_PRIVATE);
         login = sharedPreferences.getString("login","");
         password = sharedPreferences.getString("password","");
-         kurerName = (TextView) findViewById(R.id.kurer);
-         adres = (TextView) findViewById(R.id.adres);
-         clientName = (TextView) findViewById(R.id.name);
-         clientTel = (TextView) findViewById(R.id.tel);
-         priceAll = (TextView) findViewById(R.id.priceall);
-         priceDost = (TextView) findViewById(R.id.pricedostavka);
-         priceOffice = (TextView) findViewById(R.id.priceoffice);
-         statusDost = (TextView) findViewById(R.id.status);
-         comments = (TextView) findViewById(R.id.comment);
+        kurerName = (TextView) findViewById(R.id.kurer);
+        adres = (TextView) findViewById(R.id.adres);
+        adres2 = (TextView) findViewById(R.id.adres2);
+        clientName = (TextView) findViewById(R.id.name);
+        clientTel = (TextView) findViewById(R.id.tel);
+        priceAll = (TextView) findViewById(R.id.priceall);
+        priceDost = (TextView) findViewById(R.id.pricedostavka);
+        priceOffice = (TextView) findViewById(R.id.priceoffice);
+        statusDost = (TextView) findViewById(R.id.status);
+        comments = (TextView) findViewById(R.id.comment);
 
-         tableLayout = (TableLayout) findViewById(R.id.myTable);
-         tableLayout.setColumnStretchable(0,true);
-         tableLayout.setColumnStretchable(1,true);
-         String arrgroup = getIntent().getStringExtra("arr_group");
-         if(arrgroup.equals("Доставка")&&isOnline()){
-             new Zakaz0().execute();
-         }else if(isOnline()){
-             new Zakaz().execute();
-         }else{
-             builderCustom_alert_windov.setMessage("Нет связи с интернетом!");
-             alert = builderCustom_alert_windov.create();
-             alert.show();
-         }
+        tableLayout = (TableLayout) findViewById(R.id.myTable);
+        tableLayout.setColumnStretchable(0,true);
+        tableLayout.setColumnStretchable(1,true);
+        String arrgroup = getIntent().getStringExtra("arr_group");
+        if(arrgroup.equals("Доставка")&&isOnline()){
+            new Zakaz0().execute();
+        }else if(isOnline()){
+            new Zakaz().execute();
+        }else{
+            builderCustom_alert_windov.setMessage("Нет связи с интернетом! Включите мобильную передачу данных или wi-fi");
+            alert = builderCustom_alert_windov.create();
+            alert.show();
+        }
 
+    }
+    public void sendStatus0(){
+        if(isOnline()){
+            new ActionTag0().execute();
+        }else{
+            builderCustom_alert_windov.setMessage("Нет связи с интернетом! Включите мобильную передачу данных или wi-fi");
+            alert = builderCustom_alert_windov.create();
+            alert.show();
+        }
     }
     public void sendStatus1(){
-        new ActionTag1().execute();
+        if(isOnline()){
+            new ActionTag1().execute();
+        }else{
+            builderCustom_alert_windov.setMessage("Нет связи с интернетом! Включите мобильную передачу данных или wi-fi");
+            alert = builderCustom_alert_windov.create();
+            alert.show();
+        }
     }
     public void sendStatus2(){
-        new ActionTag2().execute();
+        if(isOnline()){
+            new ActionTag2().execute();
+        }else{
+            builderCustom_alert_windov.setMessage("Нет связи с интернетом! Включите мобильную передачу данных или wi-fi");
+            alert = builderCustom_alert_windov.create();
+            alert.show();
+        }
     }
     public void sendStatus3(){
+        if(isOnline()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
+            builder.setTitle("Подтверждение")
+                    .setMessage("Действительно доствлено?")
+                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            new ActionTag3().execute();
+                        }
+                    })
+                    .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            alert.dismiss();
+                            Toast.makeText(Main2Activity.this, "Действие отменено", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            alert2 = builder.create();
+            alert2.setCancelable(false);
+            alert2.show();
+        }else{
+            builderCustom_alert_windov.setMessage("Нет связи с интернетом! Включите мобильную передачу данных или wi-fi");
+            alert = builderCustom_alert_windov.create();
+            alert.show();
+        }
+    }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
-        builder.setTitle("Подтверждение")
-                .setMessage("Действительно доствлено?")
-                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        new ActionTag3().execute();
-                    }
-                })
-                .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alert.dismiss();
-                        Toast.makeText(Main2Activity.this,"Действие отменено",Toast.LENGTH_SHORT).show();
-                    }
-                });
-        alert2 = builder.create();
-        alert2.setCancelable(false);
-        alert2.show();
+    class ActionTag0 extends AsyncTask<Void,Void,Void>{
+        private ProgressDialog dialog;
+        @Override
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(Main2Activity.this);
+            dialog.setMessage("отправка данных...");
+            dialog.show();
+        }
 
+        @Override
+        protected Void doInBackground(Void... voids) {
+            RequestBody formBody = new FormBody.Builder()
+                    .add("xml", "<xml><action>tag</action><login>"+login+"</login><password>"+password+"</password><code>"+codeid+"</code><status>0</status></xml>")
+                    .build();
+            Log.e("formBody",formBody.toString());
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("http://kover-samolet.333.kg/xml.php?utf=1")
+                    .post(formBody)
+                    .build();
+            try {
+                Response response = client.newCall(request).execute();
+                Log.e("ZAKAZresponse", response.toString());
+                String stttr = response.body().string();
+                Log.e("zakazStttr", stttr);
+                Document document = Jsoup.parse(stttr);
+                Elements result = document.select("result");
+                for(Element e :result){
+                    if(e.text().equals("1")){
+                        publishProgress();
+                    }
+                }
+            }catch (Exception e){}
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            statusDost.setText("Еще не обработан");
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+        }
     }
     class ActionTag1 extends AsyncTask<Void,Void,Void>{
         private ProgressDialog dialog;
@@ -171,7 +247,7 @@ public class Main2Activity extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(Void... values) {
-                statusDost.setText("Принят курьером");
+            statusDost.setText("Принят курьером");
         }
         @Override
         protected void onPostExecute(Void aVoid) {
@@ -279,10 +355,13 @@ public class Main2Activity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-         Intent intent = null;
+        Intent intent = null;
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
+                case R.id.off:
+                    sendStatus0();
+                    return true;
                 case R.id.navigation_home:
                     sendStatus1();
                     return true;
@@ -304,6 +383,7 @@ public class Main2Activity extends AppCompatActivity {
         Elements name =  null;
         Elements phone =  null;
         Elements address =  null;
+        Elements address2 =  null;
         Elements comm =  null;
         Elements tag =  null;
         Elements dostavka =  null;
@@ -337,17 +417,18 @@ public class Main2Activity extends AppCompatActivity {
                 String stttr = response.body().string();
                 Log.e("zakazStttr",stttr);
                 document = Jsoup.parse(stttr);
-                 fio = document.select("fio");
-                 sum_zakaz = document.select("sum_zakaz");
-                 name = document.select("name");
-                 phone = document.select("phone");
-                 address = document.select("address");
-                 comm = document.select("comments");
-                 tag = document.select("tag");
-                 dostavka = document.select("dostavka");
-                 office = document.select("office");
-                 name_service = document.select("name_service");
-                 price = document.select("price");
+                fio = document.select("fio");
+                sum_zakaz = document.select("sum_zakaz");
+                name = document.select("name");
+                phone = document.select("phone");
+                address = document.select("address");
+                address2 = document.select("doc_address");
+                comm = document.select("comments");
+                tag = document.select("tag");
+                dostavka = document.select("dostavka");
+                office = document.select("office");
+                name_service = document.select("name_service");
+                price = document.select("price");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -360,6 +441,9 @@ public class Main2Activity extends AppCompatActivity {
             }
             for(Element e :address){
                 adres.setText(e.text());
+            }
+            for(Element e :address2){
+                adres2.setText(e.text());
             }
             for(Element e :name){
                 clientName.setText(e.text());
@@ -482,17 +566,17 @@ public class Main2Activity extends AppCompatActivity {
                 String stttr = response.body().string();
                 Log.e("zakazStttr",stttr);
                 document = Jsoup.parse(stttr);
-                 fio = document.select("fio");
-                 sum_zakaz = document.select("sum_zakaz");
-                 name = document.select("name");
-                 phone = document.select("phone");
-                 address = document.select("address");
-                 comm = document.select("comments");
-                 tag = document.select("tag");
-                 dostavka = document.select("dostavka");
-                 office = document.select("office");
-                 name_service = document.select("name_service");
-                 price = document.select("price");
+                fio = document.select("fio");
+                sum_zakaz = document.select("sum_zakaz");
+                name = document.select("name");
+                phone = document.select("phone");
+                address = document.select("address");
+                comm = document.select("comments");
+                tag = document.select("tag");
+                dostavka = document.select("dostavka");
+                office = document.select("office");
+                name_service = document.select("name_service");
+                price = document.select("price");
             } catch (IOException e) {
                 e.printStackTrace();
             }

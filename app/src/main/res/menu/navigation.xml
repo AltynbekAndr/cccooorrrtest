@@ -11,7 +11,10 @@
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_check_circle_black_24dp"
         android:title="@string/zakazan" />
-
+    <item
+        android:id="@+id/off"
+        android:icon="@drawable/ic_highlight_off_black_24dp"
+        android:title="@string/otmena" />
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_done_all_black_24dp"

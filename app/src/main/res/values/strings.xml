@@ -13,6 +13,7 @@
     <string name="title_dashboard">Геолокация</string>
     <string name="title_notifications">История</string>
     <string name="title_activity_maps">Map</string>
+    <string name="otmena">Отмена</string>
     <string name="prinyat">Принять заказ</string>
     <string name="zakazan">Заказан</string>
     <string name="dostavlen">Доставлено</string>
