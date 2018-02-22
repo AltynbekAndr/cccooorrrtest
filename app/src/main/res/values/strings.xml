@@ -9,13 +9,19 @@
     <string name="action_settings">смена языка</string>
     <string name="action_history">отчеты</string>
     <string name="title_activity_main2">Заказ</string>
+    <string name="title_activity_main3">Заказы</string>
     <string name="title_home">Главная</string>
     <string name="title_dashboard">Геолокация</string>
     <string name="title_notifications">История</string>
     <string name="title_activity_maps">Map</string>
+    <string name="refresh">обновить</string>
     <string name="otmena">Отмена</string>
     <string name="prinyat">Принять заказ</string>
     <string name="zakazan">Заказан</string>
     <string name="dostavlen">Доставлено</string>
     <string name="google_maps_key">AIzaSyAP1oh5_KwD33QXVUZOxqBsc2QOUG9wcgM</string>
+    <string name="text_inside_circle_button_text_normal">история</string>
+    <string name="text_ham_button_text_normal">история2</string>
+    <string name="text_outside_circle_button_text_normal">бегущая строка бегущая строка бегущая строка</string>
+    <string name="text_ham_button_sub_text_normal">геолокация2</string>
 </resources>

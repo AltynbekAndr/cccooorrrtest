@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class LaunchActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences = null;
     AlertDialog.Builder builderCustom_alert_windov = null;
     AlertDialog alert = null;
+    CheckBox checkBox = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +61,8 @@ public class LaunchActivity extends AppCompatActivity {
         login = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.password);
         Button btn_signin = (Button) findViewById(R.id.btn_signin);
-
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
+        String ischecked = sharedPreferences.getString("ischecked","");
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,13 +119,14 @@ public class LaunchActivity extends AppCompatActivity {
                     Log.e("(result) :",elements.toString());
                     return null;
                 }else if(elements2!=null&&elements2.text().equals("1")){
-
+                    if(checkBox.isChecked()){
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("login",loginStr);
+                        editor.putString("password",passwordStr);
+                        editor.putString("fio",elements3.eq(0).text());
+                        editor.apply();
+                    }
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("login",loginStr);
-                    editor.putString("password",passwordStr);
-                    editor.putString("fio",elements3.eq(0).text());
-                    editor.apply();
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
@@ -147,90 +151,4 @@ public class LaunchActivity extends AppCompatActivity {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
-    /*public void login(View view){
-        new Login().execute();
-    }
-    public void zakaz(View view){
-        new Zakaz().execute();
-    }
-    public void history(View view){
-        new history().execute();
-    }
-    class  Login extends AsyncTask<Void,Void,Void>{
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            RequestBody formBody = new FormBody.Builder()
-                    .add("xml", "<xml><action>login</action><login>5899</login><password>64143</password></xml>")
-                    .build();
-
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url("http://kover-samolet.333.kg/xml.php?utf=1")
-                    .post(formBody)
-                    .build();
-
-
-            try {
-                Response response = client.newCall(request).execute();
-                Log.e("LOGINresponseIZ",response.toString());
-                String stttr = response.body().string();
-                Log.e("login",stttr);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-    class  Zakaz extends AsyncTask<Void,Void,Void>{
-        @Override
-        protected Void doInBackground(Void... voids) {
-            RequestBody formBody = new FormBody.Builder()
-                    .add("xml", "<xml><action>zakaz</action><login>5899</login><password>64143</password><code>86690</code></xml>")
-                    .build();
-
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url("http://kover-samolet.333.kg/xml.php?utf=1")
-                    .post(formBody)
-                    .build();
-
-
-            try {
-                Response response = client.newCall(request).execute();
-                Log.e("ZAKAZresponse",response.toString());
-                String stttr = response.body().string();
-                Log.e("zakaz1000",stttr);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-    class  history extends AsyncTask<Void,Void,Void>{
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            RequestBody formBody = new FormBody.Builder()
-                    .add("xml", "<xml><action>history</action><login>user5648</login><password>325411</password></xml>")
-                    .build();
-
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url("http://kover-samolet.333.kg/xml.php?utf=1")
-                    .post(formBody)
-                    .build();
-
-
-            try {
-                Response response = client.newCall(request).execute();
-                Log.e("ZHISTORYresponse",response.toString());
-                String stttr = response.body().string();
-                Log.e("history",stttr);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }*/
 }

@@ -11,6 +11,9 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
+import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.ContextCompat;
@@ -25,6 +28,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.dd.morphingbutton.MorphingButton;
+import com.dd.morphingbutton.impl.LinearProgressButton;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -59,6 +65,7 @@ public class Main2Activity extends AppCompatActivity {
     AlertDialog.Builder builderCustom_alert_windov = null;
     AlertDialog alert = null;
     AlertDialog alert2 = null;
+    LinearProgressButton btnMorph = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +101,17 @@ public class Main2Activity extends AppCompatActivity {
         tableLayout.setColumnStretchable(0,true);
         tableLayout.setColumnStretchable(1,true);
         String arrgroup = getIntent().getStringExtra("arr_group");
+        btnMorph = (LinearProgressButton) findViewById(R.id.btnMorph1);
+
+        MorphingButton.Params circle = MorphingButton.Params.create()
+                .duration(integer(R.integer.mb_animation))
+                .cornerRadius(dimen(R.dimen.mb_height_56))
+                .width(dimen(R.dimen.mb_height_56))
+                .height(dimen(R.dimen.mb_height_56))
+                .color(color(R.color.color_gray))
+                .colorPressed(color(R.color.color_gray2))
+                .icon(R.drawable.ic_call_black_24dp);
+        btnMorph.morph(circle);
         if(arrgroup.equals("Доставка")&&isOnline()){
             new Zakaz0().execute();
         }else if(isOnline()){
@@ -687,5 +705,14 @@ public class Main2Activity extends AppCompatActivity {
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+    public int dimen(@DimenRes int resId) {
+        return (int) getResources().getDimension(resId);
+    }
+    public int color(@ColorRes int resId) {
+        return getResources().getColor(resId);
+    }
+    public int integer(@IntegerRes int resId) {
+        return getResources().getInteger(resId);
     }
 }

@@ -9,27 +9,24 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -45,9 +42,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity{
     String login = null;
     String password = null;
     String fio = null;
@@ -60,6 +55,8 @@ public class MainActivity extends AppCompatActivity
     ListView customListView = null;
     AlertDialog.Builder builderCustom_alert_windov = null;
     AlertDialog alert = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState != null) {
             finish();
         }
+
         builderCustom_alert_windov = new AlertDialog.Builder(MainActivity.this);
         builderCustom_alert_windov.setTitle("Нет данных!")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -79,85 +77,71 @@ public class MainActivity extends AppCompatActivity
         alert.setCancelable(false);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
 
-                if(isOnline()){
-                    new Zakaz().execute();
-                }else if(!isOnline()){
-                    builderCustom_alert_windov.setMessage("Нет связи с интернетом!");
-                    alert = builderCustom_alert_windov.create();
-                    alert.show();
-                }
 
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        SharedPreferences sharedPreferences = getSharedPreferences("MYSETTINGS",MODE_PRIVATE);
-        login = sharedPreferences.getString("login","");
-        password = sharedPreferences.getString("password","");
-        fio = sharedPreferences.getString("fio","");
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        View header = navigationView.getHeaderView(0);
-        textViewHeader = (TextView) header.findViewById(R.id.nameUser);
-        textViewHeader.setText(fio);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        SharedPreferences sharedPreferences = getSharedPreferences("MYSETTINGS", MODE_PRIVATE);
+        login = sharedPreferences.getString("login", "");
+        password = sharedPreferences.getString("password", "");
+        fio = sharedPreferences.getString("fio", "");
+        getSupportActionBar().setTitle(fio);
         customListView = (ListView) findViewById(R.id.customListView);
-        if(isOnline()){
+        if (isOnline()) {
             new Zakaz().execute();
-        }else if(!isOnline()){
+        } else if (!isOnline()) {
             builderCustom_alert_windov.setMessage("Нет связи с интернетом!");
             alert = builderCustom_alert_windov.create();
             alert.show();
         }
 
-
-    }
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Intent intent = null;
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_share) {
-            intent = new Intent(MainActivity.this,HistoryActivity.class);
-            startActivity(intent);
-        }else if (id == R.id.nav_set_lang) {
-            intent = new Intent(MainActivity.this,MyLocation.class);
-            startActivity(intent);
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.zakazy:
+                    if(isOnline()){
+                        new Zakaz().execute();
+                    }else if(!isOnline()){
+                        builderCustom_alert_windov.setMessage("Нет связи с интернетом!");
+                        alert = builderCustom_alert_windov.create();
+                        alert.show();
+                    }
+                    return true;
+                case R.id.history:
+                    intent = new Intent(MainActivity.this,HistoryActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.location:
+                    intent = new Intent(MainActivity.this,MyLocation.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.refresh:
+                    if(isOnline()){
+                        new Zakaz().execute();
+                    }else if(!isOnline()){
+                        builderCustom_alert_windov.setMessage("Нет связи с интернетом!");
+                        alert = builderCustom_alert_windov.create();
+                        alert.show();
+                    }
+                    return true;
+            }
+            return false;
         }
+    };
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
     public boolean isOnline() {
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
+
+
     class  Zakaz extends AsyncTask<Void,Void,Void> {
         Document document = null;
         CustomArrayAdapter customArrayAdapter = null;
@@ -261,4 +245,9 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+    public int color(@ColorRes int resId) {
+        return getResources().getColor(resId);
+    }
+
+
 }

@@ -16,54 +16,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
-            android:background="@drawable/bg_drawable_bg4"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button2"
-                style="@style/aButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:onClick="showDatePickOne"
-                android:text="начальный период"
-                android:textColor="@color/color_white" />
-
-            <Button
-                android:id="@+id/button3"
-                style="@style/aButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:onClick="showDatePickTwo"
-                android:text="конечный период"
-                android:textColor="@color/color_white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
             android:orientation="horizontal"
             android:textAlignment="center">
 
             <TextView
                 android:id="@+id/tt1"
+                style="@style/aButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginRight="50dp"
+                android:onClick="showDatePickOne"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="1999-00-0"
+                android:textAlignment="center"
+                android:textColor="@color/color_white" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="||"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/tt2"
+                style="@style/aButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="50dp"
+                android:onClick="showDatePickTwo"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="2000-00-0"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/color_white" />
+
         </LinearLayout>
 
 
@@ -111,12 +101,16 @@
                     android:textColor="@color/color_white"
                     android:visibility="gone" />
 
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:srcCompat="@drawable/ic_youtube_searched_for_black_24dp" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id='@+id/imageButton'
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="false"
+                    android:layout_marginTop="200dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/search"
+                    android:visibility="gone" />
 
 
             </LinearLayout>
@@ -126,14 +120,14 @@
             android:id="@+id/customListHistory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone">
-        </ListView>
+            android:visibility="gone"></ListView>
     </LinearLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_autorenew_black_24dp"/>
+        app:srcCompat="@drawable/ic_autorenew_black_24dp" />
 </android.support.design.widget.CoordinatorLayout>

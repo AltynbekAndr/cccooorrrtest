@@ -8,24 +8,18 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -66,7 +61,7 @@ public class HistoryActivity extends AppCompatActivity{
         String date1 = null;
         String date2 = null;
         ScrollView mainScroll = null;
-        ImageButton imageButton = null;
+    CircleImageView imageButton = null;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -93,13 +88,11 @@ public class HistoryActivity extends AppCompatActivity{
             ok1 = (Button) findViewById(R.id.ok1);
             ok2 = (Button) findViewById(R.id.ok2);
             mainScroll = (ScrollView) findViewById(R.id.mainScroll);
-            imageButton = (ImageButton) findViewById(R.id.imageButton);
+            imageButton = (CircleImageView) findViewById(R.id.imageButton);
+
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-
                     if(isOnline()){
                         new Zakaz().execute();
                     }else if(!isOnline()){
