@@ -19,42 +19,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="vertical"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="3"
-                        android:background="@drawable/bg_drawable_bg6"
-                        android:gravity="center"
-                        android:text="Курьер"
-                        android:textColor="@color/color_white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/kurer"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_drawable_bg6"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textColor="@color/color_white"
-                        android:textSize="18sp" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,165 +35,146 @@
                     android:paddingLeft="5dp">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/txxxx0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Адрес клиента:"
+                        android:text="Клиент"
                         android:textColor="@color/color_gray"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/adres"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:paddingRight="15dp"
                         android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2"
-                        android:textSize="18sp" />
+                        android:textColor="#8c8c8c"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="3dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp">
+
+                    <TextView
+                        android:id="@+id/txxxx2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Имя"
+                        android:textColor="@color/color_gray"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingRight="15dp"
+                        android:textAlignment="gravity"
+                        android:textColor="#795548"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center"
+                    android:onClick="callPhone"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:id="@+id/tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="#cccccc"
+                        android:onClick="callPhone"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="sdvsdvdsv"
+                        android:textAlignment="gravity"
+                        android:textColor="#666"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#cccccc" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
                     android:orientation="vertical"
                     android:paddingLeft="5dp">
 
                     <TextView
+                        android:id="@+id/txxxx1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Адрес заведения:"
+                        android:text="Адрес"
                         android:textColor="@color/color_gray"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/adres2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:paddingRight="15dp"
-                        android:textColor="@color/color_gray2"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="3"
-                        android:gravity="left|center"
-                        android:paddingLeft="5dp"
-                        android:text="От кого:"
-                        android:textColor="@color/color_gray"
-                        android:textSize="14sp"
+                        android:textColor="#263238 "
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_weight="1"
-                        android:gravity="right|center"
-                        android:paddingRight="15dp"
-                        android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2"
-                        android:textSize="16sp" />
                 </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="3"
-                        android:gravity="left|center"
-                        android:paddingLeft="5dp"
-                        android:text="Телефон:"
-                        android:textColor="@color/color_gray"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tel"
-                            android:layout_width="match_parent"
-                            android:layout_height="32dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"
-                            android:gravity="right|center"
-                            android:textAlignment="gravity"
-                            android:textColor="@color/color_gray2"
-                            android:textSize="16sp" />
-
-                        <com.dd.morphingbutton.impl.LinearProgressButton
-                            android:id="@+id/btnMorph1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:onClick="callPhone"
-                            android:textColor="@color/color_gray2" />
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="1dp"
+                    android:background="#cccccc" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="5dp">
+                    android:paddingLeft="5dp"
+                    android:paddingRight="15dp">
 
                     <TextView
-                        android:id="@+id/textView24"
+                        android:id="@+id/txxxx3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Наименование"
                         android:textColor="@color/color_gray"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView22"
+                        android:id="@+id/txxxx4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="right"
                         android:text="Цена"
                         android:textColor="@color/color_gray"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="vertical"
                     android:paddingLeft="10dp">
 
@@ -235,48 +187,42 @@
                     </TableLayout>
 
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#cccccc" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="15dp">
 
                     <TextView
-                        android:id="@+id/textView20"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="3"
-                        android:gravity="left|center"
-                        android:paddingLeft="5dp"
-                        android:text="Об.сумма:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Итого"
                         android:textColor="@color/color_gray"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/priceall"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_weight="1"
-                        android:gravity="right|center"
-                        android:paddingRight="15dp"
-                        android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="ascascsdc"
+                        android:textAlignment="gravity" />
 
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/txxxx5"
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginRight="2dp"
@@ -285,8 +231,7 @@
                         android:paddingLeft="5dp"
                         android:text="Доставка:"
                         android:textColor="@color/color_gray"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/pricedostavka"
@@ -296,19 +241,17 @@
                         android:gravity="right|center"
                         android:paddingRight="15dp"
                         android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2"
-                        android:textSize="16sp" />
+                        android:textColor="@color/color_gray2" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/txxxx6"
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginRight="2dp"
@@ -317,8 +260,7 @@
                         android:paddingLeft="5dp"
                         android:text="Офис:"
                         android:textColor="@color/color_gray"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/priceoffice"
@@ -328,19 +270,18 @@
                         android:gravity="right|center"
                         android:paddingRight="15dp"
                         android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2"
-                        android:textSize="16sp" />
+                        android:textColor="@color/color_gray2" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/textView16"
+                        android:id="@+id/txxxx7"
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginRight="2dp"
@@ -349,8 +290,7 @@
                         android:paddingLeft="5dp"
                         android:text="Статус:"
                         android:textColor="@color/color_gray"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/status"
@@ -361,37 +301,69 @@
                         android:paddingBottom="2dp"
                         android:paddingRight="15dp"
                         android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2"
-                        android:textSize="16sp" />
+                        android:textColor="@color/color_gray2" />
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#cccccc" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="75dp"
                     android:orientation="vertical"
                     android:paddingLeft="5dp">
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/txxxx8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Примечание :"
                         android:textColor="@color/color_gray"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:gravity="right"
+                        android:paddingLeft="5dp"
                         android:paddingRight="15dp"
-                        android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2"
-                        android:textSize="18sp" />
+                        android:textColor="@color/color_gray2" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn1"
+                        style="@style/aButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="принято"
+                        android:textColor="#fff"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/btn2"
+                        style="@style/aButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="заказано"
+                        android:textColor="#fff"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/btn3"
+                        style="@style/gButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="доставлено"
+                        android:textColor="#fff"
+                        android:visibility="visible" />
                 </LinearLayout>
             </LinearLayout>
 

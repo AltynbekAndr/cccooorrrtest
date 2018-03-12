@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -49,7 +50,6 @@ public class Main2Activity extends AppCompatActivity {
     String login = null;
     String password = null;
     String codeid = null;
-    TextView kurerName = null;
     TextView adres = null;
     TextView adres2 = null;
     TextView clientName = null;
@@ -65,11 +65,24 @@ public class Main2Activity extends AppCompatActivity {
     AlertDialog.Builder builderCustom_alert_windov = null;
     AlertDialog alert = null;
     AlertDialog alert2 = null;
-    LinearProgressButton btnMorph = null;
+    TextView txt1 = null;
+    TextView txt2 = null;
+    TextView txt3 = null;
+    TextView txt4 = null;
+    TextView txt5 = null;
+    TextView txt6 = null;
+    TextView txt7 = null;
+    TextView txt8 = null;
+    TextView txt9 = null;
+    String pathToShrift2 = "fonts/thin.ttf";
+    Typeface typefacen2;
+    Button btn1,btn2,btn3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         builderCustom_alert_windov = new AlertDialog.Builder(Main2Activity.this);
         builderCustom_alert_windov.setTitle("Нет данных")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -86,7 +99,6 @@ public class Main2Activity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MYSETTINGS",MODE_PRIVATE);
         login = sharedPreferences.getString("login","");
         password = sharedPreferences.getString("password","");
-        kurerName = (TextView) findViewById(R.id.kurer);
         adres = (TextView) findViewById(R.id.adres);
         adres2 = (TextView) findViewById(R.id.adres2);
         clientName = (TextView) findViewById(R.id.name);
@@ -96,22 +108,65 @@ public class Main2Activity extends AppCompatActivity {
         priceOffice = (TextView) findViewById(R.id.priceoffice);
         statusDost = (TextView) findViewById(R.id.status);
         comments = (TextView) findViewById(R.id.comment);
-
+        typefacen2 = Typeface.createFromAsset(getAssets(),pathToShrift2);
         tableLayout = (TableLayout) findViewById(R.id.myTable);
         tableLayout.setColumnStretchable(0,true);
         tableLayout.setColumnStretchable(1,true);
         String arrgroup = getIntent().getStringExtra("arr_group");
-        btnMorph = (LinearProgressButton) findViewById(R.id.btnMorph1);
+        txt1 = (TextView) findViewById(R.id.txxxx0);
+        txt2 = (TextView) findViewById(R.id.txxxx1);
+        txt3 = (TextView) findViewById(R.id.txxxx2);
+        txt4 = (TextView) findViewById(R.id.txxxx3);
+        txt5 = (TextView) findViewById(R.id.txxxx4);
+        txt6 = (TextView) findViewById(R.id.txxxx5);
+        txt7 = (TextView) findViewById(R.id.txxxx6);
+        txt8 = (TextView) findViewById(R.id.txxxx7);
+        txt9 = (TextView) findViewById(R.id.txxxx8);
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
 
-        MorphingButton.Params circle = MorphingButton.Params.create()
-                .duration(integer(R.integer.mb_animation))
-                .cornerRadius(dimen(R.dimen.mb_height_56))
-                .width(dimen(R.dimen.mb_height_56))
-                .height(dimen(R.dimen.mb_height_56))
-                .color(color(R.color.color_gray))
-                .colorPressed(color(R.color.color_gray2))
-                .icon(R.drawable.ic_call_black_24dp);
-        btnMorph.morph(circle);
+        /*kurerName
+                adres
+        adres2
+                clientName
+        clientTel
+                priceAll
+        priceDost
+                priceOffice
+        statusDost
+                comments
+        typefacen2*/
+
+
+
+
+        txt1.setTypeface(typefacen2);
+        txt1.setTextSize(getResources().getDimension(R.dimen.textsize4));
+
+        txt2.setTypeface(typefacen2);
+        txt2.setTextSize(getResources().getDimension(R.dimen.textsize4));
+
+        txt3.setTypeface(typefacen2);
+        txt3.setTextSize(getResources().getDimension(R.dimen.textsize4));
+
+        txt4.setTypeface(typefacen2);
+        txt4.setTextSize(getResources().getDimension(R.dimen.textsize4));
+
+        txt5.setTypeface(typefacen2);
+        txt5.setTextSize(getResources().getDimension(R.dimen.textsize4));
+
+        txt6.setTypeface(typefacen2);
+        txt6.setTextSize(getResources().getDimension(R.dimen.textsize4));
+
+        txt7.setTypeface(typefacen2);
+        txt7.setTextSize(getResources().getDimension(R.dimen.textsize4));
+
+        txt8.setTypeface(typefacen2);
+        txt8.setTextSize(getResources().getDimension(R.dimen.textsize4));
+
+        txt9.setTypeface(typefacen2);
+        txt9.setTextSize(getResources().getDimension(R.dimen.textsize4));
         if(arrgroup.equals("Доставка")&&isOnline()){
             new Zakaz0().execute();
         }else if(isOnline()){
@@ -122,10 +177,52 @@ public class Main2Activity extends AppCompatActivity {
             alert.show();
         }
 
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendStatus0();
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendStatus1();
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendStatus2();
+            }
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
     public void sendStatus0(){
-        if(isOnline()){
-            new ActionTag0().execute();
+        if(isOnline()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
+            builder.setTitle("Подтверждение")
+                    .setMessage("Принять заказ?")
+                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            new ActionTag0().execute();
+                        }
+                    })
+                    .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            alert.dismiss();
+                            Toast.makeText(Main2Activity.this, "Действие отменено", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            alert2 = builder.create();
+            alert2.setCancelable(false);
+            alert2.show();
         }else{
             builderCustom_alert_windov.setMessage("Нет связи с интернетом! Включите мобильную передачу данных или wi-fi");
             alert = builderCustom_alert_windov.create();
@@ -133,8 +230,26 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
     public void sendStatus1(){
-        if(isOnline()){
-            new ActionTag1().execute();
+        if(isOnline()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
+            builder.setTitle("Подтверждение")
+                    .setMessage("Заказан?")
+                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            new ActionTag1().execute();
+                        }
+                    })
+                    .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            alert.dismiss();
+                            Toast.makeText(Main2Activity.this, "Действие отменено", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            alert2 = builder.create();
+            alert2.setCancelable(false);
+            alert2.show();
         }else{
             builderCustom_alert_windov.setMessage("Нет связи с интернетом! Включите мобильную передачу данных или wi-fi");
             alert = builderCustom_alert_windov.create();
@@ -142,8 +257,26 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
     public void sendStatus2(){
-        if(isOnline()){
-            new ActionTag2().execute();
+        if(isOnline()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
+            builder.setTitle("Подтверждение")
+                    .setMessage("Отменить заказ?")
+                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            new ActionTag2().execute();
+                        }
+                    })
+                    .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            alert.dismiss();
+                            Toast.makeText(Main2Activity.this, "Действие отменено", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            alert2 = builder.create();
+            alert2.setCancelable(false);
+            alert2.show();
         }else{
             builderCustom_alert_windov.setMessage("Нет связи с интернетом! Включите мобильную передачу данных или wi-fi");
             alert = builderCustom_alert_windov.create();
@@ -377,13 +510,13 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.off:
+                case R.id.navigation_home:
                     sendStatus0();
                     return true;
-                case R.id.navigation_home:
+                case R.id.navigation_dashboard:
                     sendStatus1();
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.off:
                     sendStatus2();
                     return true;
                 case R.id.navigation_notifications:
@@ -454,9 +587,6 @@ public class Main2Activity extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Void aVoid) {
-            for(Element e :fio){
-                kurerName.setText(e.text());
-            }
             for(Element e :address){
                 adres.setText(e.text());
             }
@@ -485,12 +615,15 @@ public class Main2Activity extends AppCompatActivity {
                 switch (e.text()){
                     case "0":
                         statusDost.setText("Еще не обработан");
+                        btn1.setVisibility(btn1.VISIBLE);
                         break;
                     case "1":
                         statusDost.setText("Принят курьером");
+                        btn1.setVisibility(btn2.VISIBLE);
                         break;
                     case "2":
                         statusDost.setText("Заказан");
+                        btn3.setVisibility(btn3.VISIBLE);
                         break;
                     case "3":
                         statusDost.setText("Доставлено");
@@ -602,9 +735,6 @@ public class Main2Activity extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Void aVoid) {
-            for(Element e :fio){
-                kurerName.setText(e.text());
-            }
             for(Element e :address){
                 adres.setText(e.text());
             }
@@ -630,12 +760,15 @@ public class Main2Activity extends AppCompatActivity {
                 switch (e.text()){
                     case "0":
                         statusDost.setText("Еще не обработан");
+                        btn1.setVisibility(btn1.VISIBLE);
                         break;
                     case "1":
                         statusDost.setText("Принят курьером");
+                        btn1.setVisibility(btn2.VISIBLE);
                         break;
                     case "2":
                         statusDost.setText("Заказан");
+                        btn3.setVisibility(btn3.VISIBLE);
                         break;
                     case "3":
                         statusDost.setText("Доставлено");

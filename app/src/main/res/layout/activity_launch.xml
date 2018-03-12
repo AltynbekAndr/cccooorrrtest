@@ -4,66 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.cs_soft.kurer.LaunchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/unnamed"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/wwwwe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="bottom|center"
             android:orientation="vertical"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp">
+            android:paddingBottom="25dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image3"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginBottom="25dp"
-                android:background="@color/transparent"
-                android:src="@drawable/app_icon" />
-
-            <TextView
-                android:id="@+id/textView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Логин"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image3"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/transparent"
+                    android:src="@drawable/icon_launch_activity" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Courier™"
+                    android:textColor="#fff"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:background="@drawable/bg_drawable_bg3"
                 android:ems="20"
                 android:inputType="textPersonName"
                 android:maxLength="20"
                 android:paddingLeft="15dp"
                 android:text="test"
-                android:textColor="#075e54"
+                android:textColor="#666"
                 android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Пароль"
-                android:textAlignment="center"
-                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:background="@drawable/bg_drawable_bg3"
                 android:ems="20"
                 android:gravity="bottom"
@@ -71,24 +77,39 @@
                 android:maxLength="20"
                 android:paddingLeft="15dp"
                 android:text="147852"
-                android:textColor="#075e54"
+                android:textColor="#666"
                 android:textSize="22sp" />
 
             <Button
                 android:id="@+id/btn_signin"
                 style="@style/aButton"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
                 android:text="войти"
-                android:textColor="@color/color_white"
-                android:textSize="18sp"
+                android:textColor="#fff"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="top|center"
+            android:orientation="vertical">
 
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Остаться в системе" />
+                android:text="Остаться в системе"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:theme="@style/MyCheckBox" />
         </LinearLayout>
 
     </LinearLayout>

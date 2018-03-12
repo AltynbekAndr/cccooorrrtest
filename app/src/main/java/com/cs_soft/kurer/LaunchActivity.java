@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -38,10 +40,17 @@ public class LaunchActivity extends AppCompatActivity {
     AlertDialog.Builder builderCustom_alert_windov = null;
     AlertDialog alert = null;
     CheckBox checkBox = null;
+    String pathToShrift2 = "fonts/phenomen.otf";
+    Typeface typefacen2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
+        typefacen2 = Typeface.createFromAsset(getAssets(),pathToShrift2);
+        TextView textView = (TextView)findViewById(R.id.textView);
+        textView.setTypeface(typefacen2);
+        textView.setTextSize(getResources().getDimension(R.dimen.textsize));
         builderCustom_alert_windov = new AlertDialog.Builder(LaunchActivity.this);
         builderCustom_alert_windov.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -59,7 +68,9 @@ public class LaunchActivity extends AppCompatActivity {
             finish();
         }
         login = (EditText) findViewById(R.id.login);
+        login.setTextSize(getResources().getDimension(R.dimen.textsize3));
         password = (EditText) findViewById(R.id.password);
+        password.setTextSize(getResources().getDimension(R.dimen.textsize3));
         Button btn_signin = (Button) findViewById(R.id.btn_signin);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         String ischecked = sharedPreferences.getString("ischecked","");
@@ -119,14 +130,20 @@ public class LaunchActivity extends AppCompatActivity {
                     Log.e("(result) :",elements.toString());
                     return null;
                 }else if(elements2!=null&&elements2.text().equals("1")){
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     if(checkBox.isChecked()){
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("login",loginStr);
                         editor.putString("password",passwordStr);
                         editor.putString("fio",elements3.eq(0).text());
                         editor.apply();
                     }
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    editor.putString("login2",loginStr);
+                    editor.putString("password2",passwordStr);
+                    editor.apply();
+                    intent.putExtra("login",loginStr);
+                    intent.putExtra("password",passwordStr);
+                    intent.putExtra("fio",elements3.eq(0).text());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
@@ -144,6 +161,11 @@ public class LaunchActivity extends AppCompatActivity {
             alert = builderCustom_alert_windov.create();
             alert.show();
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
     public boolean isOnline() {
         ConnectivityManager cm =

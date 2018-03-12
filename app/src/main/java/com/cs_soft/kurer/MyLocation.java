@@ -24,6 +24,8 @@ public class MyLocation extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_location);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
         location = new SimpleLocation(MyLocation.this);
         final double latitude = location.getLatitude();
@@ -39,7 +41,11 @@ public class MyLocation extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 
 

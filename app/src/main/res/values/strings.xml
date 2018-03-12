@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Курьер</string>
+    <string name="app_name">Ковер Самолет - Курьер</string>
     <string name="sign_in">Вход</string>
     <string name="title_activity_main">Главная</string>
 
@@ -24,4 +24,14 @@
     <string name="text_ham_button_text_normal">история2</string>
     <string name="text_outside_circle_button_text_normal">бегущая строка бегущая строка бегущая строка</string>
     <string name="text_ham_button_sub_text_normal">геолокация2</string>
+
+
+
+    <string name="locationMagaz">Расположение магазинов</string>
+    <string name="locationMagaz_little">Адреса магазинов по для курьера</string>
+    <string name="search">Поиск</string>
+    <string name="models">Виды товаров</string>
+    <string name="models_little">Список часто заказываемых товаров</string>
+    <string name="black_list">Черный список</string>
+    <string name="black_list_little">Список клиентов которые занесены в черный список</string>
 </resources>

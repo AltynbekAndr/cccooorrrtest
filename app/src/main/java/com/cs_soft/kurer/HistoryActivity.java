@@ -1,25 +1,19 @@
 package com.cs_soft.kurer;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,10 +23,10 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,7 +34,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class HistoryActivity extends AppCompatActivity{
+public class HistoryActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
         String login = null;
         String password = null;
         String fio = null;
@@ -50,18 +44,10 @@ public class HistoryActivity extends AppCompatActivity{
         List <String>arr_status = null;
         List <String> arr_codeid = null;
         ListView customListView = null;
-        AlertDialog.Builder builderCustom_alert_windov = null;
-        AlertDialog alert = null;
-        DatePicker datePicker1 = null;
-        DatePicker datePicker2 = null;
-        TextView txt1 = null;
-        TextView txt2 = null;
-        Button ok1 = null;
-        Button ok2 = null;
         String date1 = null;
         String date2 = null;
-        ScrollView mainScroll = null;
-    CircleImageView imageButton = null;
+        Date date = null;
+        SwipeRefreshLayout  mSwipeRefreshLayout =null;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -69,64 +55,55 @@ public class HistoryActivity extends AppCompatActivity{
             if (savedInstanceState != null) {
                 finish();
             }
-            builderCustom_alert_windov = new AlertDialog.Builder(HistoryActivity.this);
-            builderCustom_alert_windov.setTitle("Нет данных")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            alert.dismiss();
-                        }
-                    });
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-            alert = builderCustom_alert_windov.create();
-            alert.setCancelable(false);
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-            datePicker1 =  (DatePicker) findViewById(R.id.datePicker);
-            datePicker2 =  (DatePicker) findViewById(R.id.datePicker2);
-            txt1 = (TextView) findViewById(R.id.tt1);
-            txt2 = (TextView) findViewById(R.id.tt2);
-            ok1 = (Button) findViewById(R.id.ok1);
-            ok2 = (Button) findViewById(R.id.ok2);
-            mainScroll = (ScrollView) findViewById(R.id.mainScroll);
-            imageButton = (CircleImageView) findViewById(R.id.imageButton);
+            mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
+            mSwipeRefreshLayout.setOnRefreshListener(this);
+            mSwipeRefreshLayout.setColorScheme(R.color.gray, R.color.gray, R.color.gray, R.color.gray);
 
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(isOnline()){
-                        new Zakaz().execute();
-                    }else if(!isOnline()){
-                        builderCustom_alert_windov.setMessage("Нет связи с интернетом!");
-                        alert = builderCustom_alert_windov.create();
-                        alert.show();
-                    }
+            date = new Date();
 
-                }
-            });
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(isOnline()){
-                        new Zakaz().execute();
-                        imageButton.setVisibility(imageButton.GONE);
-                    }else if(!isOnline()){
-                        builderCustom_alert_windov.setMessage("Нет связи с интернетом!");
-                        alert = builderCustom_alert_windov.create();
-                        alert.show();
-                    }
-                }
-            });
+            Date date = new Date(); // your date
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH)+1;
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+
+            String monthStr = String.valueOf(month);
+            String dayStr = String.valueOf(day-1);
+            String dayStr2 = String.valueOf(day);
+            if(monthStr.length()==1){
+                monthStr = "0"+monthStr;
+            }
+            if(dayStr.length()==1){
+                dayStr = "0"+dayStr;
+            }
+            if(dayStr2.length()==1){
+                dayStr2 = "0"+dayStr2;
+            }
+
+            date1 = year+"-"+monthStr+"-"+dayStr;
+            date2 = year+"-"+monthStr+"-"+dayStr2;
+
+            Log.e("date1", date1);
+            Log.e("date2", date2);
             SharedPreferences sharedPreferences = getSharedPreferences("MYSETTINGS",MODE_PRIVATE);
             login = sharedPreferences.getString("login","");
             password = sharedPreferences.getString("password","");
             fio = sharedPreferences.getString("fio","");
+            if(login.equals("")){
+                login = getIntent().getStringExtra("login");
+                password = getIntent().getStringExtra("password");
+                fio = getIntent().getStringExtra("fio");
+            }
             customListView = (ListView) findViewById(R.id.customListHistory);
             if(isOnline()){
+                mSwipeRefreshLayout.setRefreshing(true);
                 new Zakaz().execute();
             }else if(!isOnline()){
-                builderCustom_alert_windov.setMessage("Нет связи с интернетом!");
-                alert = builderCustom_alert_windov.create();
-                alert.show();
+                Toast.makeText(HistoryActivity.this,"Нет связи с интернетом!",Toast.LENGTH_LONG).show();
             }
 
 
@@ -136,7 +113,11 @@ public class HistoryActivity extends AppCompatActivity{
             super.onBackPressed();
             this.finish();
         }
-
+        @Override
+        public boolean onSupportNavigateUp() {
+            onBackPressed();
+            return true;
+        }
 
         public boolean isOnline() {
             ConnectivityManager cm =
@@ -144,10 +125,22 @@ public class HistoryActivity extends AppCompatActivity{
             NetworkInfo netInfo = cm.getActiveNetworkInfo();
             return netInfo != null && netInfo.isConnectedOrConnecting();
         }
-        class  Zakaz extends AsyncTask<Void,Void,Void> {
+
+    @Override
+    public void onRefresh() {
+        if(isOnline()){
+            new Zakaz().execute();
+        }else if(!isOnline()){
+            Toast.makeText(HistoryActivity.this,"Нет связи с интернетом!",Toast.LENGTH_LONG).show();
+        }
+        // начинаем показывать прогресс
+        mSwipeRefreshLayout.setRefreshing(true);
+
+    }
+
+    class  Zakaz extends AsyncTask<Void,Void,Void> {
             Document document = null;
             CustomArrayAdapter customArrayAdapter = null;
-            private ProgressDialog dialog;
             boolean boolFlag = true;
             @Override
             protected void onPreExecute() {
@@ -156,17 +149,17 @@ public class HistoryActivity extends AppCompatActivity{
                 arr_tel = new ArrayList();
                 arr_status = new ArrayList();
                 arr_codeid = new ArrayList();
-                dialog = new ProgressDialog(HistoryActivity.this);
-                dialog.setMessage("загрузка...");
-                dialog.show();
             }
+
+
+            //     <start>2018-02-08 00:00:00</start><end>2018-02-08 00:00:00</end><page>1</page>
 
 
             @Override
             protected Void doInBackground(Void... voids) {
                 new Timestamp(new Date().getTime());
                 RequestBody formBody = new FormBody.Builder()
-                        .add("xml", "<xml><action>history</action><login>"+login+"</login><password>"+password+"</password><start>"+txt1.getText().toString()+"00:00:00"+"</start><end>"+txt2.getText().toString()+"00:00:00"+"</end><page>1</page></xml>")
+                        .add("xml", "<xml><action>history</action><login>"+login+"</login><password>"+password+"</password><start>"+date1+"</start><end>"+date2+"</end><page>1</page></xml>")
                         .build();
 
                 OkHttpClient client = new OkHttpClient();
@@ -226,7 +219,7 @@ public class HistoryActivity extends AppCompatActivity{
             }
             @Override
             protected void onPostExecute(Void aVoid) {
-                customArrayAdapter = new CustomArrayAdapter(HistoryActivity.this,arr_group,arr_name,arr_tel,arr_status);
+                customArrayAdapter = new CustomArrayAdapter(HistoryActivity.this,arr_group,arr_name,arr_tel,arr_status,"8458.ttf");
                 customListView.setVisibility(customListView.VISIBLE);
                 customListView.setAdapter(customArrayAdapter);
                 customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -238,60 +231,17 @@ public class HistoryActivity extends AppCompatActivity{
                         startActivity(intent);
                     }
                 });
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                    mainScroll.setVisibility(mainScroll.GONE);
-                }
+                mSwipeRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 3000);
                 if(boolFlag){
-                    builderCustom_alert_windov.setMessage("Пусто");
-                    alert = builderCustom_alert_windov.create();
-                    alert.show();
+                    Toast.makeText(HistoryActivity.this,"Нет данных...",Toast.LENGTH_LONG).show();
                 }
             }
 
-        }
-        public void showDatePickOne(View view){
-             mainScroll.setVisibility(mainScroll.VISIBLE);
-             datePicker2.setVisibility(datePicker2.GONE);
-             datePicker1.setVisibility(datePicker1.VISIBLE);
-             ok1.setVisibility(ok1.VISIBLE);
-             ok2.setVisibility(ok1.GONE);
-        }
-        public void showDatePickTwo(View view){
-            mainScroll.setVisibility(mainScroll.VISIBLE);
-            datePicker1.setVisibility(datePicker1.GONE);
-            datePicker2.setVisibility(datePicker2.VISIBLE);
-            ok2.setVisibility(ok2.VISIBLE);
-            ok1.setVisibility(ok1.GONE);
-        }
-        public void ok1(View view){
-            int day = datePicker1.getDayOfMonth();
-            int month = datePicker1.getMonth()+1;
-            String monthStr = String.valueOf(month);
-            if(monthStr.length()==1){
-                monthStr = "0"+month;
-            }
-            int year = datePicker1.getYear();
-
-            datePicker1.setVisibility(datePicker1.GONE);
-            ok1.setVisibility(ok1.GONE);
-            txt1.setText(year+"-"+monthStr+"-"+day);
-            date1 = txt1.getText().toString();
-        }
-        public void ok2(View view){
-            int day = datePicker2.getDayOfMonth();
-            int month = datePicker2.getMonth()+1;
-            String monthStr = String.valueOf(month);
-            if(monthStr.length()==1){
-                monthStr = "0"+month;
-            }
-            int year = datePicker2.getYear();
-
-            datePicker2.setVisibility(datePicker2.GONE);
-            ok2.setVisibility(ok2.GONE);
-            txt2.setText(year+"-"+monthStr+"-"+day);
-            date2 = txt2.getText().toString();
-            imageButton.setVisibility(imageButton.VISIBLE);
         }
 
 }

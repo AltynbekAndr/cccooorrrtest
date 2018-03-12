@@ -11,6 +11,9 @@
     <style name="aButton" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/abutton</item>
     </style>
+    <style name="gButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/gbutton</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -26,5 +29,9 @@
         <item name="android:activityOpenExitAnimation">@anim/activity_down_up_exit</item>
         <item name="android:activityCloseExitAnimation">@anim/activity_down_up_close_exit</item>
         <item name="android:activityCloseEnterAnimation">@anim/activity_down_up_close_enter</item>
+    </style>
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#fff</item>
+        <item name="colorControlActivated">#fff</item>
     </style>
 </resources>

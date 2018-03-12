@@ -1,88 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:gravity="center"
-    android:paddingRight="5dp"
     android:clickable="false"
     android:descendantFocusability="blocksDescendants"
     android:focusable="false"
-    android:focusableInTouchMode="false">
+    android:focusableInTouchMode="false"
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:clickable="false"
         android:descendantFocusability="blocksDescendants"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:clickable="false"
+                android:descendantFocusability="blocksDescendants"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:id="@+id/txt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="Доставка"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/txt2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="Имя"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/txt3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="Телефон"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:typeface="sans" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="70dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txt4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:clickable="false"
-            android:descendantFocusability="blocksDescendants"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="5dp">
-
-            <TextView
-                android:id="@+id/txt1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:text="Доставка"
-                android:textColor="#666"
-                android:textSize="18sp"
-                android:typeface="sans" />
-
-            <TextView
-                android:id="@+id/txt2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:text="Имя"
-                android:textColor="#666"
-                android:textSize="18sp"
-                android:typeface="sans" />
-
-            <TextView
-                android:id="@+id/txt3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:text="Телефон"
-                android:textColor="#666"
-                android:textSize="18sp"
-                android:typeface="sans" />
-
-            <TextView
-                android:id="@+id/txt4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:text="Статус"
-                android:textColor="#666"
-                android:textSize="18sp"
-                android:typeface="sans" />
-        </LinearLayout>
-        </LinearLayout>
-
+            android:paddingLeft="5dp"
+            android:text="Статус"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:typeface="sans"
+            android:visibility="gone" />
+    </LinearLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

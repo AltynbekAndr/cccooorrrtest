@@ -12,122 +12,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:layout_marginTop="3dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:textAlignment="center">
-
-            <TextView
-                android:id="@+id/tt1"
-                style="@style/aButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:onClick="showDatePickOne"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="1999-00-0"
-                android:textAlignment="center"
-                android:textColor="@color/color_white" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="||"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/tt2"
-                style="@style/aButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:onClick="showDatePickTwo"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="2000-00-0"
-                android:textAlignment="center"
-                android:textColor="@color/color_white" />
-
-        </LinearLayout>
-
-
-        <ScrollView
-            android:id="@+id/mainScroll"
+        <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible">
-
-            <LinearLayout
+            tools:context="com.shppandroid1.app.MainActivity">
+            <ListView
+                android:id="@+id/customListHistory"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <DatePicker
-                    android:id="@+id/datePicker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <DatePicker
-                    android:id="@+id/datePicker2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-                <Button
-                    android:id="@+id/ok1"
-                    style="@style/aButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="ok1"
-                    android:text="@android:string/ok"
-                    android:textColor="@color/color_white"
-                    android:visibility="gone" />
-
-                <Button
-                    android:id="@+id/ok2"
-                    style="@style/aButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="ok2"
-                    android:text="@android:string/ok"
-                    android:textColor="@color/color_white"
-                    android:visibility="gone" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id='@+id/imageButton'
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_centerHorizontal="false"
-                    android:layout_centerVertical="false"
-                    android:layout_marginTop="200dp"
-                    android:background="@color/transparent"
-                    android:src="@drawable/search"
-                    android:visibility="gone" />
-
-
-            </LinearLayout>
-        </ScrollView>
-
-        <ListView
-            android:id="@+id/customListHistory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"></ListView>
+                android:layout_height="match_parent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_autorenew_black_24dp" />
 </android.support.design.widget.CoordinatorLayout>
