@@ -15,6 +15,22 @@
         <item name="android:background">@drawable/gbutton</item>
     </style>
 
+
+    <style name="pButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/pbutton</item>
+    </style>
+    <style name="zButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/zbutton</item>
+    </style>
+    <style name="dButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/dbutton</item>
+    </style>
+    <style name="calButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/calbutton</item>
+    </style>
+
+
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

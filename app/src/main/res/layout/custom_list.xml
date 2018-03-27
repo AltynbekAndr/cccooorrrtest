@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/transparent3"
     android:clickable="false"
     android:descendantFocusability="blocksDescendants"
     android:focusable="false"
     android:focusableInTouchMode="false"
-    android:gravity="center">
+    android:gravity="center"
+    android:padding="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,11 +22,31 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/coordinator"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
+            <!--<de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="false"
+                android:layout_marginLeft="10dp"
+                android:background="@color/transparent"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_check_circle_black_24dp"
+                android:visibility="visible" />-->
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,7 +66,7 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:text="Доставка"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:typeface="sans" />
@@ -58,8 +79,8 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:text="Имя"
-                    android:textColor="#fff"
-                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:textSize="16sp"
                     android:typeface="sans" />
 
                 <TextView
@@ -70,8 +91,8 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:text="Телефон"
-                    android:textColor="#fff"
-                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:textSize="16sp"
                     android:typeface="sans" />
 
             </LinearLayout>

@@ -8,8 +8,11 @@
         <item
             android:id="@+id/history"
             android:icon="@drawable/ic_assignment_black_24dp"
-            android:title="История" />
-
+            android:title="Отчеты" />
+        <item
+            android:id="@+id/exit"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Выход" />
 
     </group>
     <item android:title="">

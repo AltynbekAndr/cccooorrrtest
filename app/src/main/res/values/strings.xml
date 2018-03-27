@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name">Ковер Самолет - Курьер</string>
+    <string name="app_name">Курьер</string>
     <string name="sign_in">Вход</string>
     <string name="title_activity_main">Главная</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">смена языка</string>
+    <string name="action_settings">Подключиться</string>
     <string name="action_history">отчеты</string>
     <string name="title_activity_main2">Заказ</string>
     <string name="title_activity_main3">Заказы</string>
     <string name="title_home">Главная</string>
     <string name="title_dashboard">Геолокация</string>
-    <string name="title_notifications">История</string>
+    <string name="title_notifications">Отчеты</string>
     <string name="title_activity_maps">Map</string>
     <string name="refresh">обновить</string>
     <string name="otmena">Отмена</string>
@@ -26,7 +26,6 @@
     <string name="text_ham_button_sub_text_normal">геолокация2</string>
 
 
-
     <string name="locationMagaz">Расположение магазинов</string>
     <string name="locationMagaz_little">Адреса магазинов по для курьера</string>
     <string name="search">Поиск</string>
@@ -34,4 +33,32 @@
     <string name="models_little">Список часто заказываемых товаров</string>
     <string name="black_list">Черный список</string>
     <string name="black_list_little">Список клиентов которые занесены в черный список</string>
+
+
+    <string name="material_calendar_monday">П</string>
+    <string name="material_calendar_tuesday">В</string>
+    <string name="material_calendar_wednesday">С</string>
+    <string name="material_calendar_thursday">Ч</string>
+    <string name="material_calendar_friday">П</string>
+    <string name="material_calendar_saturday">С</string>
+    <string name="material_calendar_sunday">В</string>
+
+    <array name="material_calendar_months_array">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </array>
+
+    <string name="material_calendar_today_button">сегодня</string>
+    <string name="material_calendar_positive_button">OK</string>
+    <string name="material_calendar_negative_button">выход</string>
 </resources>

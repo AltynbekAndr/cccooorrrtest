@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cs_soft.kurer.Main2Activity">
+    tools:context="com.cs_soft.courier.Main2Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,12 +19,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:orientation="vertical"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp">
-
 
 
                 <LinearLayout
@@ -50,12 +48,12 @@
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:paddingRight="15dp"
+                        android:text="........."
                         android:textAlignment="gravity"
-                        android:textColor="#8c8c8c"
+                        android:textColor="#000"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,37 +79,38 @@
                         android:gravity="left"
                         android:paddingRight="15dp"
                         android:textAlignment="gravity"
-                        android:textColor="#795548"
+                        android:textColor="#000"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:background="@drawable/bg_drawable_bg7"
                     android:gravity="left|center"
                     android:onClick="callPhone"
-                    android:orientation="horizontal"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="15dp">
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_call_black_24dp" />
 
                     <TextView
                         android:id="@+id/tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
-                        android:background="#cccccc"
-                        android:onClick="callPhone"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="sdvsdvdsv"
-                        android:textAlignment="gravity"
-                        android:textColor="#666"
+                        android:layout_marginTop="1dp"
+                        android:text=".................."
+                        android:textColor="#000"
                         android:textSize="16sp" />
 
                 </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#cccccc" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -135,9 +134,11 @@
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:paddingRight="15dp"
-                        android:textColor="#263238 "
+                        android:textColor="@color/fbutton_color_pomegranate"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -149,34 +150,43 @@
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal"
                     android:paddingLeft="5dp"
-                    android:paddingRight="15dp">
+                    android:paddingRight="15dp"
+                    android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/txxxx3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Наименование"
                         android:textColor="@color/color_gray"
-                        android:textSize="16sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txxxx4"
+                        android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="right"
+                        android:text="Количество"
+                        android:textColor="@color/color_gray"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Цена"
                         android:textColor="@color/color_gray"
-                        android:textSize="16sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="5dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="10dp">
+                    android:orientation="vertical">
 
 
                     <TableLayout
@@ -187,90 +197,101 @@
                     </TableLayout>
 
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#cccccc" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="15dp">
+                    android:paddingTop="3dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Итого"
+                        android:text="ваива"
                         android:textColor="@color/color_gray"
-                        android:textSize="16sp" />
+                        android:visibility="invisible" />
 
                     <TextView
                         android:id="@+id/priceall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@color/c3"
+                        android:textAlignment="center"
+                        android:textColor="@color/color_gray2"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="ascascsdc"
-                        android:textAlignment="gravity" />
+                        android:orientation="vertical">
 
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/pricedostavka"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textAlignment="gravity"
+                            android:textColor="@color/color_gray2"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/txxxx5"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Доставка:"
+                            android:textColor="@color/color_gray"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="3"
-                        android:gravity="left|center"
-                        android:paddingLeft="5dp"
-                        android:text="Доставка:"
-                        android:textColor="@color/color_gray"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/pricedostavka"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="right|center"
-                        android:paddingRight="15dp"
-                        android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2" />
-                </LinearLayout>
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/priceoffice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textAlignment="gravity"
+                            android:textColor="@color/color_gray2"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/txxxx6"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="3"
-                        android:gravity="left|center"
-                        android:paddingLeft="5dp"
-                        android:text="Офис:"
-                        android:textColor="@color/color_gray"
-                        android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="В офис:"
+                            android:textColor="@color/color_gray"
+                            android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/priceoffice"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_weight="1"
-                        android:gravity="right|center"
-                        android:paddingRight="15dp"
-                        android:textAlignment="gravity"
-                        android:textColor="@color/color_gray2" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -290,7 +311,8 @@
                         android:paddingLeft="5dp"
                         android:text="Статус:"
                         android:textColor="@color/color_gray"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/status"
@@ -303,17 +325,14 @@
                         android:textAlignment="gravity"
                         android:textColor="@color/color_gray2" />
                 </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#cccccc" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="75dp"
+                    android:layout_marginBottom="40dp"
                     android:orientation="vertical"
-                    android:paddingLeft="5dp">
+                    android:paddingLeft="5dp"
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:id="@+id/txxxx8"
@@ -331,39 +350,51 @@
                         android:layout_marginBottom="10dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/color_gray2" />
+                        android:textColor="#000" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/btn1"
-                        style="@style/aButton"
-                        android:layout_width="wrap_content"
+                        style="@style/pButton"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="принято"
-                        android:textColor="#fff"
-                        android:visibility="visible" />
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="Принять"
+                        android:textColor="#434343"
+                        android:textSize="24sp"
+                        android:visibility="gone" />
 
                     <Button
                         android:id="@+id/btn2"
-                        style="@style/aButton"
-                        android:layout_width="wrap_content"
+                        style="@style/zButton"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="заказано"
-                        android:textColor="#fff"
-                        android:visibility="visible" />
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="Заказано"
+                        android:textColor="#434343"
+                        android:textSize="24sp"
+                        android:visibility="gone" />
 
                     <Button
                         android:id="@+id/btn3"
-                        style="@style/gButton"
-                        android:layout_width="wrap_content"
+                        style="@style/dButton"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="доставлено"
-                        android:textColor="#fff"
-                        android:visibility="visible" />
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="Доставлено"
+                        android:textColor="#434343"
+                        android:textSize="24sp"
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -377,7 +408,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

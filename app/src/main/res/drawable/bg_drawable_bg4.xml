@@ -4,8 +4,8 @@
     android:shape="rectangle" >
     <gradient
         android:angle="90"
-        android:endColor="#5B8C9B"
-        android:startColor="#496E89"
+        android:endColor="#2B6D8F"
+        android:startColor="#2B6D8F"
         android:type="sweep" />
     <padding
         android:bottom="7px"
